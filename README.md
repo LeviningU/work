@@ -1,3 +1,3 @@
 # 编程实战  备忘录系统
 
-![备忘录](https://github.com/curiouspass/work/assets/115971453/7163a259-b32f-4ca1-a3eb-95b8f5602a0d)
+![备忘录2](https://github.com/curiouspass/work/assets/115971453/e265808f-e705-43a6-bbd0-e1cc5d6974c7)
