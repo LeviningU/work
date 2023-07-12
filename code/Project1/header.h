@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <fstream>
+#include <iostream>
 
 class user {
 	std::string name;
@@ -24,13 +26,30 @@ class file {
 	int state;//事件状态 无状态(非待办)0 已完成1 进行中2 未开始3
 	
 	//todo 文件，内容
+	file(int now_id);//仅需创建文件
+public:
+	void Read();//查看
+	void Creat();//创建
+	void Edit();//编辑
+	void Remind();//提醒
+	void Import();//导入
+	void Export();//导出
+	void delect();//删除
 
 
 
 };
 
+void search();//查找
+
 class folder {
 	int id;
 	std::string name;
 
+	folder();
+public:
+	void Creat();//创建
+	void delect();//删除
+	void Rename();//重命名
+	
 };
