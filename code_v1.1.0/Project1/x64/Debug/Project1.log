@@ -1,0 +1,8 @@
+﻿  file.cpp
+  folder.cpp
+  main.cpp
+  user.cpp
+  正在生成代码...
+C:\Users\Levin\Downloads\work-main\work-main\code\Project1\file.cpp(229): warning C4715: “File::state_c”: 不是所有的控件路径都返回值
+  LINK : 没有找到 C:\Users\Levin\Downloads\work-main\work-main\code\Project1\x64\Debug\Project1.exe 或上一个增量链接没有生成它；正在执行完全链接
+  Project1.vcxproj -> C:\Users\Levin\Downloads\work-main\work-main\code\Project1\x64\Debug\Project1.exe
