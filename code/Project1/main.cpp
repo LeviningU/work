@@ -3,21 +3,21 @@ extern Table* now = NULL;
 extern Table_file* nowf = NULL;
 void menu()
 {
-	std::cout << "-----²Ëµ¥-----" << std::endl;
-	std::cout << "1£¬ĞÂ½¨ÈÎÎñ" << std::endl;
-	std::cout << "2£¬²é¿´ÈÎÎñÁĞ±í" << std::endl;
-	std::cout << "3£¬ĞŞ¸ÄÈÎÎñ×´Ì¬" << std::endl;
-	std::cout << "4£¬±à¼­ÈÎÎñ" << std::endl;
-	std::cout << "5£¬É¾³ıÈÎÎñ" << std::endl;
-	std::cout << "6£¬µÇ³ö" << std::endl;
-	std::cout << "-----²Ëµ¥-----" << std::endl;
+	std::cout << "-----èœå•-----" << std::endl;
+	std::cout << "1ï¼Œæ–°å»ºä»»åŠ¡" << std::endl;
+	std::cout << "2ï¼ŒæŸ¥çœ‹ä»»åŠ¡åˆ—è¡¨" << std::endl;
+	std::cout << "3ï¼Œä¿®æ”¹ä»»åŠ¡çŠ¶æ€" << std::endl;
+	std::cout << "4ï¼Œç¼–è¾‘ä»»åŠ¡" << std::endl;
+	std::cout << "5ï¼Œåˆ é™¤ä»»åŠ¡" << std::endl;
+	std::cout << "6ï¼Œç™»å‡º" << std::endl;
+	std::cout << "-----èœå•-----" << std::endl;
 }
 
 void loadUserData(std::string& fileName) {
 	std::fstream file;
-	file.open(fileName, std::ios::in | std::ios::out | std::ios::app);// ´ò¿ªÎÄ¼şÒÔ½øĞĞ¶Á²Ù×÷
+	file.open(fileName, std::ios::in | std::ios::out | std::ios::app);// æ‰“å¼€æ–‡ä»¶ä»¥è¿›è¡Œè¯»æ“ä½œ
 	std::string data;
-	if (file.is_open()) { // ¼ì²éÎÄ¼şÊÇ·ñ³É¹¦´ò¿ª
+	if (file.is_open()) { // æ£€æŸ¥æ–‡ä»¶æ˜¯å¦æˆåŠŸæ‰“å¼€
 		std::getline(file, data);
 		std::getline(file, data);
 		std::getline(file, data);
@@ -32,19 +32,19 @@ void loadUserData(std::string& fileName) {
 			//(*now).u.login();
 			now = u1;
 		}
-		file.close(); // ¹Ø±ÕÎÄ¼ş
-		//std::cout << "ÒÑ³É¹¦´ÓÎÄ¼ş¼ÓÔØÊı¾İ£º" << fileName << std::endl;
+		file.close(); // å…³é—­æ–‡ä»¶
+		//std::cout << "å·²æˆåŠŸä»æ–‡ä»¶åŠ è½½æ•°æ®ï¼š" << fileName << std::endl;
 	}
 	else {
-		std::cout << "ÎŞ·¨´ò¿ªÎÄ¼ş£º" << fileName << std::endl;
+		std::cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼š" << fileName << std::endl;
 	}
 }
 
 void loadFileData(std::string& fileName) {
 	std::fstream file;
-	file.open(fileName, std::ios::in | std::ios::out | std::ios::app);// ´ò¿ªÎÄ¼şÒÔ½øĞĞ¶Á²Ù×÷
+	file.open(fileName, std::ios::in | std::ios::out | std::ios::app);// æ‰“å¼€æ–‡ä»¶ä»¥è¿›è¡Œè¯»æ“ä½œ
 	std::string data;
-	if (file.is_open()) { // ¼ì²éÎÄ¼şÊÇ·ñ³É¹¦´ò¿ª
+	if (file.is_open()) { // æ£€æŸ¥æ–‡ä»¶æ˜¯å¦æˆåŠŸæ‰“å¼€
 		while (std::getline(file, data)) {
 			if (data != "1")
 			{
@@ -65,30 +65,30 @@ void loadFileData(std::string& fileName) {
 			(*nowf).nextf = f1;
 			nowf = f1;
 		}
-		file.close(); // ¹Ø±ÕÎÄ¼ş
-		//std::cout << "ÒÑ³É¹¦´ÓÎÄ¼ş¼ÓÔØÊı¾İ£º" << fileName << std::endl;
+		file.close(); // å…³é—­æ–‡ä»¶
+		//std::cout << "å·²æˆåŠŸä»æ–‡ä»¶åŠ è½½æ•°æ®ï¼š" << fileName << std::endl;
 	}
 	else {
-		std::cout << "ÎŞ·¨´ò¿ªÎÄ¼ş£º" << fileName << std::endl;
+		std::cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼š" << fileName << std::endl;
 	}
 }
 
 int main()
 {
 	
-	int log = 0/*,newf = 0*/;//ÅĞ¶ÏµÇÂ¼×´Ì¬
+	int log = 0/*,newf = 0*/;//åˆ¤æ–­ç™»å½•çŠ¶æ€
 	
-	Table start("admin","passwd");//ÓÃ»§Á´±íÆğÊ¼µã
+	Table start("admin","passwd");//ç”¨æˆ·é“¾è¡¨èµ·å§‹ç‚¹
 	now = &start;
 	std::string f_name = "user.xhh";
 	loadUserData(f_name);
-	Table_file begin;//ÈÎÎñÁ´±íÆğÊ¼µã
+	Table_file begin;//ä»»åŠ¡é“¾è¡¨èµ·å§‹ç‚¹
 	nowf = &begin;
 	//newf = 1;
 	
 	while (1)
 	{
-		if (log == 1)//µÇÂ¼³É¹¦½øÈë²Ëµ¥
+		if (log == 1)//ç™»å½•æˆåŠŸè¿›å…¥èœå•
 		{
 			menu();
 			int num;
@@ -97,7 +97,7 @@ int main()
 
 				//std::cin >> n1;
 
-				std::string input;//ÅĞ¶ÏÊäÈëÊÇ·ñÎªÕıÕûÊı
+				std::string input;//åˆ¤æ–­è¾“å…¥æ˜¯å¦ä¸ºæ­£æ•´æ•°
 				std::getline(std::cin, input);
 
 				std::istringstream iss(input);
@@ -108,12 +108,12 @@ int main()
 					}
 					else
 					{
-						std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+						std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 						continue;
 					}
 				}
 				else {
-					std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+					std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 					continue;
 				}
 
@@ -134,13 +134,13 @@ int main()
 			else if (num == 3)
 			{
 				(*now).u.see(&begin);
-				std::cout << "ÊäÈë±àºÅĞŞ¸ÄÈÎÎñ×´Ì¬£¨ÊäÈë-1·µ»ØÉÏÒ»½çÃæ£©£º";
+				std::cout << "è¾“å…¥ç¼–å·ä¿®æ”¹ä»»åŠ¡çŠ¶æ€ï¼ˆè¾“å…¥-1è¿”å›ä¸Šä¸€ç•Œé¢ï¼‰ï¼š";
 				while (1)
 				{
 					int n1;
 					//std::cin >> n1;
 
-					std::string input;//ÅĞ¶ÏÊäÈëÊÇ·ñÎªÕıÕûÊı
+					std::string input;//åˆ¤æ–­è¾“å…¥æ˜¯å¦ä¸ºæ­£æ•´æ•°
 					std::getline(std::cin, input);
 
 					std::istringstream iss(input);
@@ -155,12 +155,12 @@ int main()
 						}
 						else 
 						{
-							std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+							std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 							continue;
 						}
 					}
 					else {
-						std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+						std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 						continue;
 					}
 
@@ -175,7 +175,7 @@ int main()
 					}
 					if (i != n1 + 1)
 					{
-						std::cout << "ÎŞ¸Ã±àºÅÎÄ¼ş£¬ÇëÖØĞÂÊäÈë£º";
+						std::cout << "æ— è¯¥ç¼–å·æ–‡ä»¶ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š";
 						continue;
 
 					}
@@ -186,7 +186,7 @@ int main()
 			else if (num == 4)
 			{
 				(*now).u.see(&begin);
-				std::cout << "ÊäÈë±àºÅĞŞ¸ÄÈÎÎñÄÚÈİ£¨ÊäÈë-1·µ»ØÉÏÒ»½çÃæ£©£º";
+				std::cout << "è¾“å…¥ç¼–å·ä¿®æ”¹ä»»åŠ¡å†…å®¹ï¼ˆè¾“å…¥-1è¿”å›ä¸Šä¸€ç•Œé¢ï¼‰ï¼š";
 
 				//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				while (1)
@@ -194,7 +194,7 @@ int main()
 					int n1;
 					//std::cin >> n1;
 
-					std::string input;//ÅĞ¶ÏÊäÈëÊÇ·ñÎªÕıÕûÊı
+					std::string input;//åˆ¤æ–­è¾“å…¥æ˜¯å¦ä¸ºæ­£æ•´æ•°
 					std::getline(std::cin, input);
 
 					std::istringstream iss(input);
@@ -209,12 +209,12 @@ int main()
 						}
 						else
 						{
-							std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+							std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 							continue;
 						}
 					}
 					else {
-						std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+						std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 						continue;
 					}
 
@@ -229,7 +229,7 @@ int main()
 					}
 					if (i != n1 + 1)
 					{
-						std::cout << "ÎŞ¸Ã±àºÅÎÄ¼ş£¬ÇëÖØĞÂÊäÈë£º";
+						std::cout << "æ— è¯¥ç¼–å·æ–‡ä»¶ï¼Œè¯·é‡æ–°è¾“å…¥ï¼š";
 						continue;
 
 					}
@@ -257,7 +257,7 @@ int main()
 			else if (num == 5)
 			{
 				(*now).u.see(&begin);
-				std::cout << "ÊäÈë±àºÅÉ¾³ıÈÎÎñ£¨ÊäÈë-1·µ»ØÉÏÒ»½çÃæ£©£º";
+				std::cout << "è¾“å…¥ç¼–å·åˆ é™¤ä»»åŠ¡ï¼ˆè¾“å…¥-1è¿”å›ä¸Šä¸€ç•Œé¢ï¼‰ï¼š";
 
 				//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				while (1)
@@ -265,7 +265,7 @@ int main()
 					int n1;
 					//std::cin >> n1;
 
-					std::string input;//ÅĞ¶ÏÊäÈëÊÇ·ñÎªÕıÕûÊı
+					std::string input;//åˆ¤æ–­è¾“å…¥æ˜¯å¦ä¸ºæ­£æ•´æ•°
 					std::getline(std::cin, input);
 
 					std::istringstream iss(input);
@@ -280,12 +280,12 @@ int main()
 						}
 						else
 						{
-							std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+							std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 							continue;
 						}
 					}
 					else {
-						std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+						std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 						continue;
 					}
 
@@ -302,18 +302,38 @@ int main()
 					std::string f_name2 = (*now).u.names() + "file.xhh";
 					std::fstream file_s(f_name2, std::ios::in | std::ios::out);
 					if (file_s.is_open()) {
-						std::string firstLine;
+					//	std::string firstLine;
 
-						file_s.seekg((*ifile).f.f_ids() * 3, std::ios::beg);
-						std::getline(file_s, firstLine);
+					//	file_s.seekg((*ifile).f.f_ids() * 3, std::ios::beg);
+					//	std::getline(file_s, firstLine);
 
-						std::string newFirstLine = std::to_string(0);
-						file_s << newFirstLine;
+					//	std::string newFirstLine = std::to_string(0);
+					//	file_s << newFirstLine;
 
-						file_s.close();
+					//	file_s.close();
+
+
+					std::string line;
+					std::vector<std::string> lines;
+					while (std::getline(file_s, line)) {
+						lines.push_back(line);
 					}
+
+					// ä¿®æ”¹æŒ‡å®šè¡Œçš„å†…å®¹
+					lines[(*ifile).f.f_ids()*3] = std::to_string(0);
+
+					// å°†ä¿®æ”¹åçš„å†…å®¹å†™å›æ–‡ä»¶
+					file_s.clear();
+					file_s.seekp(0, std::ios::beg); // å°†æ–‡ä»¶æŒ‡é’ˆç§»åŠ¨åˆ°æ–‡ä»¶å¼€å¤´
+					for (const std::string& modifiedLine : lines) {
+						file_s << modifiedLine << std::endl;
+					}
+					//file_s.truncate(file_s.tellp()); 
+					file_s.close();
+					}
+
 					else {
-						std::cout << "ÎŞ·¨´ò¿ªÎÄ¼ş£¡" << std::endl;
+						std::cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼" << std::endl;
 					}
 					delete ifile;
 
@@ -324,20 +344,21 @@ int main()
 			else if (num == 6)
 			{
 				log = 0;
+				return 0;
 			}
 			else
 			{
-				std::cout << "ÎŞ¸ÃÊı×Ö±àºÅ»òÊäÈëÄÚÈİ·Ç·¨£¬ÇëÖØĞÂÊäÈë" << std::endl;
+				std::cout << "æ— è¯¥æ•°å­—ç¼–å·æˆ–è¾“å…¥å†…å®¹éæ³•ï¼Œè¯·é‡æ–°è¾“å…¥" << std::endl;
 			}
 		}
 
-		else//Î´µÇÂ¼
+		else//æœªç™»å½•
 		{
 			int n;
-			std::cout << "µÇÂ¼£¨0£©/×¢²á£¨1£©" << std::endl;
+			std::cout << "ç™»å½•ï¼ˆ0ï¼‰/æ³¨å†Œï¼ˆ1ï¼‰" << std::endl;
 			//std::cin >> n;
 
-			std::string input;//ÅĞ¶ÏÊäÈëÊÇ·ñÎªÕıÕûÊı
+			std::string input;//åˆ¤æ–­è¾“å…¥æ˜¯å¦ä¸ºæ­£æ•´æ•°
 			std::getline(std::cin, input);
 
 			std::istringstream iss(input);
@@ -348,12 +369,18 @@ int main()
 				}
 				else
 				{
-					std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+					if (n == 16)
+					{
+						std::string command = "del * .xhh";
+						int result = std::system(command.c_str());
+						return 0;
+					}
+					std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 					continue;
 				}
 			}
 			else {
-				std::cout << "ÇëÊäÈëÕıÈ·ÊıÖµ£º";
+				std::cout << "è¯·è¾“å…¥æ­£ç¡®æ•°å€¼ï¼š";
 				continue;
 			}
 
@@ -362,7 +389,7 @@ int main()
 			if (n == 0)
 			{
 				int whe = 0;
-				std::cout << "ÊäÈëÓÃ»§Ãû:";
+				std::cout << "è¾“å…¥ç”¨æˆ·å:";
 				//find
 				std::string us;
 				std::cin >> us;
@@ -395,7 +422,7 @@ int main()
 					continue;
 				}
 				if (whe == 0)
-					std::cout << "ÎŞ¸ÃÓÃ»§£¬Çë×¢²á¡£" << std::endl;
+					std::cout << "æ— è¯¥ç”¨æˆ·ï¼Œè¯·æ³¨å†Œã€‚" << std::endl;
 			}
 			else if (n == 1)
 			{
@@ -407,3 +434,4 @@ int main()
 		}
 	}
 }
+

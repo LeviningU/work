@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <sstream>
+#include <vector>
 class Table_file;
 class User;
 class Table;
@@ -18,12 +19,12 @@ void loadFileData(std::string& fileName);
 
 class User {
 public:
-	std::string reg(std::string name, std::string passwd, int save = 0);//×¢²á£¬¼ÇÂ¼ÓÃ»§Ãû£¬ÃÜÂë£¬Éú³Éid
+	std::string reg(std::string name, std::string passwd, int save = 0);//æ³¨å†Œï¼Œè®°å½•ç”¨æˆ·åï¼Œå¯†ç ï¼Œç”Ÿæˆid
 	int login();
 	int login(std::string name);
-	//µÇÂ¼£¬Æ¥ÅäÓÃ»§ÃûºÍÃÜÂë£¬Èô¶¼Æ¥ÅäÊä³öµÇÂ¼³É¹¦£¬
-	//ÓÃ»§ÃûÎŞÆ¥ÅäÌáÊ¾ÎŞ¸ÃÓÃ»§Çë×¢²á£¬ÓÃ»§ÃûÆ¥ÅäÃÜÂë²»Æ¥ÅäÌáÊ¾ÃÜÂë´íÎó
-	void create();//´´½¨file¼ÇÂ¼ÄÚÈİ
+	//ç™»å½•ï¼ŒåŒ¹é…ç”¨æˆ·åå’Œå¯†ç ï¼Œè‹¥éƒ½åŒ¹é…è¾“å‡ºç™»å½•æˆåŠŸï¼Œ
+	//ç”¨æˆ·åæ— åŒ¹é…æç¤ºæ— è¯¥ç”¨æˆ·è¯·æ³¨å†Œï¼Œç”¨æˆ·ååŒ¹é…å¯†ç ä¸åŒ¹é…æç¤ºå¯†ç é”™è¯¯
+	void create();//åˆ›å»ºfileè®°å½•å†…å®¹
 	void see(Table_file* s);
 	User()
 	{
@@ -44,24 +45,24 @@ public:
 private:
 	std::string name;
 	std::string password;
-	int user_id;//ÓÃ»§±êÊ¶
+	int user_id;//ç”¨æˆ·æ ‡è¯†
 
 };
 
 class File /*:public Folder*/ {
-	//todo ÎÄ¼ş£¬ÄÚÈİ
+	//todo æ–‡ä»¶ï¼Œå†…å®¹
 public:
 	~File();
 	File() {}
-	File(std::string name,int user_id);//½öĞè´´½¨ÎÄ¼ş
+	File(std::string name,int user_id);//ä»…éœ€åˆ›å»ºæ–‡ä»¶
 	void Files(std::string name, int user_id, int save_f = 0, int stat = 2);
-	void read(int i = 0);//²é¿´
-	void create();//´´½¨
-	void edit();//±à¼­
-	void remind_f();//ÌáĞÑ
-	void import_f();//µ¼Èë
-	void export_f();//µ¼³ö
-	void del();//É¾³ı
+	void read(int i = 0);//æŸ¥çœ‹
+	void create();//åˆ›å»º
+	void edit();//ç¼–è¾‘
+	void remind_f();//æé†’
+	void import_f();//å¯¼å…¥
+	void export_f();//å¯¼å‡º
+	void del();//åˆ é™¤
 	void state_c();
 	std::string state_c(int n);
 	int f_ids()
@@ -73,26 +74,26 @@ public:
 private:
 	int user_id;
 	int del_state = 1;
-	int file_id;//ÎÄ¼ş±êÊ¶
-	int remind = 0;//ÊÇ·ñÌáĞÑ ÊÇ1 ·ñ0
-	time_t remind_time;//ÌáĞÑÊ±¼ä
-	int state;//ÊÂ¼ş×´Ì¬ ÎŞ×´Ì¬(·Ç´ı°ì)0 ÒÑÍê³É1 Î´Íê³É2 ½øĞĞÖĞ3
+	int file_id;//æ–‡ä»¶æ ‡è¯†
+	int remind = 0;//æ˜¯å¦æé†’ æ˜¯1 å¦0
+	time_t remind_time;//æé†’æ—¶é—´
+	int state;//äº‹ä»¶çŠ¶æ€ æ— çŠ¶æ€(éå¾…åŠ)0 å·²å®Œæˆ1 æœªå®Œæˆ2 è¿›è¡Œä¸­3
 	std::fstream fs;
 	std::string owner_name;
 
 };
 
 
-void search();//²éÕÒ
+void search();//æŸ¥æ‰¾
 
 class Table {
 public:
 	Table()
 	{
 		std::string name,password;
-		std::cout << "ÇëÊäÈëÓÃ»§Ãû:";
+		std::cout << "è¯·è¾“å…¥ç”¨æˆ·å:";
 		std::cin >> name;
-		std::cout << "ÇëÊäÈëÃÜÂë:";
+		std::cout << "è¯·è¾“å…¥å¯†ç :";
 		std::cin >> password;
 		std::cout << u.reg(name, password,1);
 	}
@@ -132,9 +133,9 @@ public:
 //class Folder {
 //public:
 //	Folder();
-//	void Creat();//´´½¨
-//	void delect();//É¾³ı
-//	void Rename();//ÖØÃüÃû
+//	void Creat();//åˆ›å»º
+//	void delect();//åˆ é™¤
+//	void Rename();//é‡å‘½å
 //
 //private:
 //	int folder_id;

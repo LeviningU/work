@@ -1,10 +1,10 @@
 #include "header.h"
-//userÀàº¯ÊıÊµÏÖ
+//userç±»å‡½æ•°å®ç°
 int File::nu = 0;
 std::string User::reg(std::string name, std::string passwd, int save) {
-	/*std::cout << "ÇëÊäÈëÓÃ»§Ãû:";
+	/*std::cout << "è¯·è¾“å…¥ç”¨æˆ·å:";
 	std::cin >> name;
-	std::cout << "ÇëÊäÈëÃÜÂë:";
+	std::cout << "è¯·è¾“å…¥å¯†ç :";
 	std::cin >> password;*/
 	this->name = name;
 	this->password = passwd;
@@ -16,18 +16,18 @@ std::string User::reg(std::string name, std::string passwd, int save) {
 		std::string f_name = "user.xhh";
 		saveData(f_name, data);
 	}
-	return "ÓÃ»§´´½¨³É¹¦";
+	return "ç”¨æˆ·åˆ›å»ºæˆåŠŸ";
 }
 
 
 void saveData(std::string& f_name, std::string& data)
 {
-	std::fstream file(f_name, std::ios::in | std::ios::out | std::ios::app); // ´ò¿ªÎÄ¼şÒÔ½øĞĞĞ´²Ù×÷
+	std::fstream file(f_name, std::ios::in | std::ios::out | std::ios::app); // æ‰“å¼€æ–‡ä»¶ä»¥è¿›è¡Œå†™æ“ä½œ
 	file.clear();
 	file.seekg(0, std::ios::end);
-	if (file.is_open()) { // ¼ì²éÎÄ¼şÊÇ·ñ³É¹¦´ò¿ª
-		file << data; // ½«Êı¾İĞ´ÈëÎÄ¼ş
-		file.close(); // ¹Ø±ÕÎÄ¼ş
+	if (file.is_open()) { // æ£€æŸ¥æ–‡ä»¶æ˜¯å¦æˆåŠŸæ‰“å¼€
+		file << data; // å°†æ•°æ®å†™å…¥æ–‡ä»¶
+		file.close(); // å…³é—­æ–‡ä»¶
 	}
 	else {
 	}
@@ -39,25 +39,25 @@ void saveData(std::string& f_name, std::string& data)
 int User::login() {
 	std::string nam;
 	std::string pas;
-	std::cout << "ÇëµÇÂ¼" << std::endl;
-	std::cout << "ÇëÊäÈëÓÃ»§Ãû:";
+	std::cout << "è¯·ç™»å½•" << std::endl;
+	std::cout << "è¯·è¾“å…¥ç”¨æˆ·å:";
 	std::cin >> nam;
-	std::cout << "ÇëÊäÈëÃÜÂë:";
+	std::cout << "è¯·è¾“å…¥å¯†ç :";
 	std::cin >> pas;
 	if (nam != name)
 	{
-		std::cout << "ÎŞ¸ÃÓÃ»§£¬Çë×¢²á" << std::endl;
+		std::cout << "æ— è¯¥ç”¨æˆ·ï¼Œè¯·æ³¨å†Œ" << std::endl;
 		return 0;
 	}
 	else
 		if (pas == password)
 		{
-			std::cout << "µÇÂ¼³É¹¦" << std::endl;
+			std::cout << "ç™»å½•æˆåŠŸ" << std::endl;
 			return 1;
 		}
 		else
 		{
-			std::cout << "ÃÜÂë´íÎó" << std::endl;
+			std::cout << "å¯†ç é”™è¯¯" << std::endl;
 			return 0;
 		}
 }
@@ -65,22 +65,22 @@ int User::login() {
 int User::login(std::string name) {
 	std::string nam = name;
 	std::string pas;
-	std::cout << "ÇëÊäÈëÃÜÂë:";
+	std::cout << "è¯·è¾“å…¥å¯†ç :";
 	std::cin >> pas;
 	if (nam != name)
 	{
-		std::cout << "ÎŞ¸ÃÓÃ»§£¬Çë×¢²á" << std::endl;
+		std::cout << "æ— è¯¥ç”¨æˆ·ï¼Œè¯·æ³¨å†Œ" << std::endl;
 		return 0;
 	}
 	else
 		if (pas == password)
 		{
-			std::cout << "µÇÂ¼³É¹¦" << std::endl;
+			std::cout << "ç™»å½•æˆåŠŸ" << std::endl;
 			return 1;
 		}
 		else 
 		{
-			std::cout << "ÃÜÂë´íÎó" << std::endl;
+			std::cout << "å¯†ç é”™è¯¯" << std::endl;
 			return 0;
 		}
 }
@@ -97,7 +97,7 @@ void User::see(Table_file* s)
 	//s = (*s).nextf;
 	if ((*s).nextf == NULL)
 	{
-		std::cout << "¸ÃÓÃ»§ÎŞÈÎÎñ£¬ÇëÏÈ´´½¨ÈÎÎñ" << std::endl;
+		std::cout << "è¯¥ç”¨æˆ·æ— ä»»åŠ¡ï¼Œè¯·å…ˆåˆ›å»ºä»»åŠ¡" << std::endl;
 		return;
 	}
 	int i = 0;

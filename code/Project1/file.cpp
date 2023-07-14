@@ -1,5 +1,5 @@
 #include "header.h"
-//fileÀàº¯ÊıÊµÏÖ
+//fileç±»å‡½æ•°å®ç°
 File::File(std::string name,int user_id):user_id(user_id)
 {
     file_id = nu;
@@ -45,13 +45,13 @@ void File::read(int i) {
     fs.seekg(0, std::ios::beg);
     std::getline(fs, line);
     sscanf_s(line.c_str(), "%d", &state);
-	std::cout << i << ".ÈÎÎñÄÚÈİÎª" << state_c(1) << ":\n";
+	std::cout << i << ".ä»»åŠ¡å†…å®¹ä¸º" << state_c(1) << ":\n";
 	while (std::getline(fs, line)) {
 		std::cout << line << '\n';
 	}
 }
 void File::create() {
-    std::cout << "ÊäÈëÄÚÈİ(ÊäÈë¿ÕĞĞ½áÊøÊäÈë)£º\n";
+    std::cout << "è¾“å…¥å†…å®¹(è¾“å…¥ç©ºè¡Œç»“æŸè¾“å…¥)ï¼š\n";
     std::string line;
     std::string content;
     //std::cin.ignore();
@@ -61,24 +61,24 @@ void File::create() {
     }
 
     if (fs.is_open()) {
-        // ¼ì²éÎÄ¼şÁ÷ÊÇ·ñ¿ÉĞ´Èë
+        // æ£€æŸ¥æ–‡ä»¶æµæ˜¯å¦å¯å†™å…¥
         if (fs.good()) {
             if (!content.empty()) {
                 fs.seekp(0, std::ios::beg);
                 fs << content;
             }
-            std::cout << "´´½¨ÈÎÎñ³É¹¦\n";
+            std::cout << "åˆ›å»ºä»»åŠ¡æˆåŠŸ\n";
         }
         else {
-            std::cout << "ÎÄ¼şÁ÷²»¿ÉĞ´Èë\n";
+            std::cout << "æ–‡ä»¶æµä¸å¯å†™å…¥\n";
         }
     }
     else {
-        std::cout << "ÎŞ·¨´ò¿ªÎÄ¼ş\n";
+        std::cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶\n";
     }
     fs.close();
     //fs << content << '\n';
-    //std::cout << "´´½¨ÎÄ¼ş³É¹¦\n";
+    //std::cout << "åˆ›å»ºæ–‡ä»¶æˆåŠŸ\n";
     //remind_f();
 }
 
@@ -87,7 +87,7 @@ void File::edit() {
     fs.clear();
     fs.seekp(0, std::ios::end);
 
-    std::cout << "ÊäÈëĞÂÄÚÈİ(ÊäÈë¿ÕĞĞ½áÊøÊäÈë)£º\n";
+    std::cout << "è¾“å…¥æ–°å†…å®¹(è¾“å…¥ç©ºè¡Œç»“æŸè¾“å…¥)ï¼š\n";
     std::string line;
     std::string content;
     //std::cin.ignore();
@@ -106,24 +106,24 @@ void File::edit() {
     std::getline(std::cin, content);
     fs << content << '\n';*/
     fs.close();
-    std::cout << "ÈÎÎñĞŞ¸Ä³É¹¦\n";
+    std::cout << "ä»»åŠ¡ä¿®æ”¹æˆåŠŸ\n";
 }
 
-void File::remind_f() {//Î´½ÓÈë
-    std::cout << "ÊäÈëÌáĞÑÊ±¼ä£¨ÈôÎŞĞèÌáĞÑÔòÊäÈë0£©:\n";
+void File::remind_f() {//æœªæ¥å…¥
+    std::cout << "è¾“å…¥æé†’æ—¶é—´ï¼ˆè‹¥æ— éœ€æé†’åˆ™è¾“å…¥0ï¼‰:\n";
     std::cin >> remind_time;
     if (remind_time != 0)
     {
         remind = 1;
-        std::cout << "ÌáĞÑÉèÖÃ³É¹¦¡£\n";
+        std::cout << "æé†’è®¾ç½®æˆåŠŸã€‚\n";
     }
     else
     {
-        std::cout << "ÄãÑ¡ÔñÁËÎŞĞèÌáĞÑ¡£\n";
+        std::cout << "ä½ é€‰æ‹©äº†æ— éœ€æé†’ã€‚\n";
     }
 }
 
-void File::import_f() {//Î´½ÓÈë
+void File::import_f() {//æœªæ¥å…¥
     std::string filename;
     std::cout << "Enter the name of the file to import:\n";
     std::cin.ignore();
@@ -141,7 +141,7 @@ void File::import_f() {//Î´½ÓÈë
     }
 }
 
-void File::export_f() {//Î´½ÓÈë
+void File::export_f() {//æœªæ¥å…¥
     std::string filename;
     std::cout << "Enter the name of the file to export:\n";
     std::cin.ignore();
@@ -164,27 +164,27 @@ void File::state_c()
 {
     if (state == 0)
     {
-        std::cout << "Î´·ÖÅä×´Ì¬" << std::endl;
+        std::cout << "æœªåˆ†é…çŠ¶æ€" << std::endl;
     }
     else if (state == 1)
     {
-        std::cout << "¸ÃÈÎÎñÒÑÍê³É" << std::endl;
+        std::cout << "è¯¥ä»»åŠ¡å·²å®Œæˆ" << std::endl;
     }
     else if (state == 2)
     {
-        std::cout << "¸ÃÈÎÎñÎ´Íê³É" << std::endl;
+        std::cout << "è¯¥ä»»åŠ¡æœªå®Œæˆ" << std::endl;
     }
     else if (state == 3)
     {
-        std::cout << "¸ÃÈÎÎñ½øĞĞÖĞ" << std::endl;
+        std::cout << "è¯¥ä»»åŠ¡è¿›è¡Œä¸­" << std::endl;
     }
-    std::cout << "ÇëĞŞ¸Ä¸ÃÈÎÎñĞÂ×´Ì¬£¨ÒÑÍê³É1 Î´Íê³É2£©£º";
+    std::cout << "è¯·ä¿®æ”¹è¯¥ä»»åŠ¡æ–°çŠ¶æ€ï¼ˆå·²å®Œæˆ1 æœªå®Œæˆ2ï¼‰ï¼š";
     int st;
     STD:
     std::cin >> st;
     if (st != 1 && st != 2)
     {
-        std::cout << "ÇëÊäÈëÕıÈ·×´Ì¬£º";
+        std::cout << "è¯·è¾“å…¥æ­£ç¡®çŠ¶æ€ï¼š";
         goto STD;
     }
     state = st;
@@ -203,7 +203,7 @@ void File::state_c()
         file_s.close();
     }
     else {
-        std::cout << "ÎŞ·¨´ò¿ªÎÄ¼ş£¡" << std::endl;
+        std::cout << "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼" << std::endl;
     }
 
 }
@@ -212,19 +212,19 @@ std::string File::state_c(int n)
 {
     if (state == 0)
     {
-        return "(Î´·ÖÅä×´Ì¬)";
+        return "(æœªåˆ†é…çŠ¶æ€)";
     }
     else if (state == 1)
     {
-        return "(ÒÑÍê³É)";
+        return "(å·²å®Œæˆ)";
     }
     else if (state == 2)
     {
-        return "(Î´Íê³É)";
+        return "(æœªå®Œæˆ)";
     }
     else if (state == 3)
     {
-        return "(½øĞĞÖĞ)";
+        return "(è¿›è¡Œä¸­)";
     }
 }
 
@@ -243,5 +243,5 @@ void File::del() {
     //    //std::cerr << "Failed to delete file: " << filename << '\n';
     //}
     del_state = 0;
-    std::cout << "É¾³ıÈÎÎñ³É¹¦\n";
+    std::cout << "åˆ é™¤ä»»åŠ¡æˆåŠŸ\n";
 }
