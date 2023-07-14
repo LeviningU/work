@@ -23,6 +23,8 @@ std::string User::reg(std::string name, std::string passwd, int save) {
 void saveData(std::string& f_name, std::string& data)
 {
 	std::fstream file(f_name, std::ios::in | std::ios::out | std::ios::app); // 打开文件以进行写操作
+	file.clear();
+	file.seekg(0, std::ios::end);
 	if (file.is_open()) { // 检查文件是否成功打开
 		file << data; // 将数据写入文件
 		file.close(); // 关闭文件

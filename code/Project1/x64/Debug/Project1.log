@@ -1,6 +1,2 @@
-﻿  file.cpp
-  main.cpp
-  user.cpp
-  正在生成代码...
-D:\vscode\编程实战\code\Project1\file.cpp(229): warning C4715: “File::state_c”: 不是所有的控件路径都返回值
+﻿  user.cpp
   Project1.vcxproj -> D:\vscode\编程实战\code\Project1\x64\Debug\Project1.exe

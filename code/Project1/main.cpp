@@ -303,9 +303,9 @@ int main()
 					std::fstream file_s(f_name2, std::ios::in | std::ios::out);
 					if (file_s.is_open()) {
 						std::string firstLine;
-						std::getline(file_s, firstLine);
 
 						file_s.seekg((*ifile).f.f_ids() * 3, std::ios::beg);
+						std::getline(file_s, firstLine);
 
 						std::string newFirstLine = std::to_string(0);
 						file_s << newFirstLine;
@@ -335,7 +335,30 @@ int main()
 		{
 			int n;
 			std::cout << "登录（0）/注册（1）" << std::endl;
-			std::cin >> n;
+			//std::cin >> n;
+
+			std::string input;//判断输入是否为正整数
+			std::getline(std::cin, input);
+
+			std::istringstream iss(input);
+			if (iss >> n && iss.eof())
+			{
+				if (n == 0 || n == 1)
+				{
+				}
+				else
+				{
+					std::cout << "请输入正确数值：";
+					continue;
+				}
+			}
+			else {
+				std::cout << "请输入正确数值：";
+				continue;
+			}
+
+
+
 			if (n == 0)
 			{
 				int whe = 0;
@@ -380,10 +403,6 @@ int main()
 				(*now).next = u1;
 				//(*now).u.login();
 				now = u1;
-			}
-			else 
-			{
-				std::cout << "请输入正确数值" << std::endl;
 			}
 		}
 	}
