@@ -1,18 +1,35 @@
 #include "header.h"
 //user类函数实现
 int File::nu = 0;
-void User::reg() {
-	std::cout << "请输入用户名:";
+std::string User::reg(std::string name, std::string passwd, int save) {
+	/*std::cout << "请输入用户名:";
 	std::cin >> name;
 	std::cout << "请输入密码:";
-	std::cin >> password;
+	std::cin >> password;*/
+	this->name = name;
+	this->password = passwd;
 	user_id = static_cast<int>(std::time(0));
-	std::cout << "用户创建成功,注册的ID为:" << user_id << std::endl;
-	//std::string data = std::to_string(user_id) + "\n" + name + "\n" + password + "\n";
-	//saveData("user.xhh", data);
+	
+	if(save)
+	{
+		std::string data = std::to_string(user_id) + "\n" + name + "\n" + password + "\n";
+		std::string f_name = "user.xhh";
+		saveData(f_name, data);
+	}
+	return "用户创建成功";
 }
 
 
+void saveData(std::string& f_name, std::string& data)
+{
+	std::fstream file(f_name, std::ios::in | std::ios::out | std::ios::app); // 打开文件以进行写操作
+	if (file.is_open()) { // 检查文件是否成功打开
+		file << data; // 将数据写入文件
+		file.close(); // 关闭文件
+	}
+	else {
+	}
+}
 
 
 
@@ -74,11 +91,18 @@ void User::create()
 
 void User::see(Table_file* s)
 {
-	int h = File::nu;
-	s = (*s).nextf;
-	for (int i = 0;i < h;i++)
+	//int h = File::nu;
+	//s = (*s).nextf;
+	if ((*s).nextf == NULL)
 	{
-		(*s).f.read();
-		s = (*s).nextf;
+		std::cout << "该用户无任务，请先创建任务" << std::endl;
+		return;
 	}
+	int i = 0;
+	for (s = (*s).nextf;(*s).nextf != NULL; s = (*s).nextf,i++)
+	{
+		(*s).f.read(i);
+		//s = (*s).nextf;
+	}
+	(*s).f.read(i);
 }

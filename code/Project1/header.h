@@ -6,26 +6,19 @@
 #include <ctime>
 #include <fstream>
 #include <iostream>
+#include <stdio.h>
+#include <sstream>
 class Table_file;
 class User;
 class Table;
 class File;
-
-//void saveData(const std::string& fileName, const std::string& data) {
-//	std::ofstream file(fileName, std::ios::in | std::ios::out | std::ios::app); // 打开文件以进行写操作
-//	if (file.is_open()) { // 检查文件是否成功打开
-//		file << data; // 将数据写入文件
-//		file.close(); // 关闭文件
-//		std::cout << "数据已成功保存到文件：" << fileName << std::endl;
-//	}
-//	else {
-//		std::cout << "无法打开文件：" << fileName << std::endl;
-//	}
-//}
+void saveData(std::string& fileName, std::string& data);
+void loadUserData(std::string& fileName);
+void loadFileData(std::string& fileName);
 
 class User {
 public:
-	void reg();//注册，记录用户名，密码，生成id
+	std::string reg(std::string name, std::string passwd, int save = 0);//注册，记录用户名，密码，生成id
 	int login();
 	int login(std::string name);
 	//登录，匹配用户名和密码，若都匹配输出登录成功，
@@ -34,8 +27,12 @@ public:
 	void see(Table_file* s);
 	User()
 	{
-		reg();
+		
 	}
+	/*User()
+	{
+		reg();
+	}*/
 	std::string names() 
 	{
 		return name;
@@ -57,8 +54,8 @@ public:
 	~File();
 	File() {}
 	File(std::string name,int user_id);//仅需创建文件
-	void Files(std::string name, int user_id);
-	void read();//查看
+	void Files(std::string name, int user_id, int save_f = 0, int stat = 2);
+	void read(int i = 0);//查看
 	void create();//创建
 	void edit();//编辑
 	void remind_f();//提醒
@@ -67,15 +64,19 @@ public:
 	void del();//删除
 	void state_c();
 	std::string state_c(int n);
-
+	int f_ids()
+	{
+		return file_id;
+	}
 	static int nu;
 
 private:
 	int user_id;
+	int del_state = 1;
 	int file_id;//文件标识
 	int remind = 0;//是否提醒 是1 否0
 	time_t remind_time;//提醒时间
-	int state = 2;//事件状态 无状态(非待办)0 已完成1 未完成2 进行中3
+	int state;//事件状态 无状态(非待办)0 已完成1 未完成2 进行中3
 	std::fstream fs;
 	std::string owner_name;
 
@@ -88,6 +89,16 @@ class Table {
 public:
 	Table()
 	{
+		std::string name,password;
+		std::cout << "请输入用户名:";
+		std::cin >> name;
+		std::cout << "请输入密码:";
+		std::cin >> password;
+		std::cout << u.reg(name, password,1);
+	}
+	Table(std::string admin,std::string passwd)
+	{
+		u.reg(admin, passwd);
 	}
 
 
@@ -104,9 +115,14 @@ public:
 	{
 
 	}
-	void createf(std::string name, int user_id)
+	void createf(std::string name, int user_id,int save_f,int state = 2)
 	{
-		f.Files(name, user_id);
+		f.Files(name, user_id, save_f, state);
+	}
+	Table_file* del_f()
+	{
+		f.del();
+		return nextf;
 	}
 	File f;
 	Table_file* nextf;

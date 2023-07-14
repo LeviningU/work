@@ -13,10 +13,11 @@ File::File(std::string name,int user_id):user_id(user_id)
     create();
 }
 
-void File::Files(std::string name, int user_id)
+void File::Files(std::string name, int user_id, int save_f, int stat)
 {
     file_id = nu;
     owner_name = name;
+    state = stat;
     //file_id = static_cast<int>(std::time(0));
     this->user_id = user_id;
     std::string filename = name + std::to_string(file_id) + ".xhh";
@@ -25,26 +26,36 @@ void File::Files(std::string name, int user_id)
         std::cerr << "Failed to open file: " << filename << std::endl;
     }
     nu++;
-    create();
+    if (save_f)
+    {
+        std::string f_name = name + "file.xhh";
+        std::string data = std::to_string(1) + "\n" + std::to_string(user_id) + "\n" + owner_name + "\n";
+        saveData(f_name, data);
+        create();
+    }
+    
 }
 
-void File::read() {
+void File::read(int i) {
 	std::string line;
-	std::cout << file_id << ".File content" << state_c(1) << ":\n";
     std::string filename = owner_name + std::to_string(file_id) + ".xhh";
     fs.open(filename, std::ios::in | std::ios::out | std::ios::app);
     fs.imbue(std::locale("en_US.UTF-8"));
     fs.clear();
     fs.seekg(0, std::ios::beg);
+    std::getline(fs, line);
+    sscanf_s(line.c_str(), "%d", &state);
+	std::cout << i << ".任务内容为" << state_c(1) << ":\n";
 	while (std::getline(fs, line)) {
 		std::cout << line << '\n';
 	}
 }
 void File::create() {
-    std::cout << "Enter new content (press Enter on an empty line to keep the original content):\n";
+    std::cout << "输入内容(输入空行结束输入)：\n";
     std::string line;
     std::string content;
-    std::cin.ignore();
+    //std::cin.ignore();
+    content += std::to_string(2) + '\n';
     while (std::getline(std::cin, line) && !line.empty()) {
         content += line + '\n';
     }
@@ -56,7 +67,7 @@ void File::create() {
                 fs.seekp(0, std::ios::beg);
                 fs << content;
             }
-            std::cout << "创建文件成功\n";
+            std::cout << "创建任务成功\n";
         }
         else {
             std::cout << "文件流不可写入\n";
@@ -76,10 +87,10 @@ void File::edit() {
     fs.clear();
     fs.seekp(0, std::ios::end);
 
-    std::cout << "Enter new content (press Enter on an empty line to keep the original content):\n";
+    std::cout << "输入新内容(输入空行结束输入)：\n";
     std::string line;
     std::string content;
-    std::cin.ignore();
+    //std::cin.ignore();
     while (std::getline(std::cin, line) && !line.empty()) {
         content += line + '\n';
     }
@@ -95,10 +106,10 @@ void File::edit() {
     std::getline(std::cin, content);
     fs << content << '\n';*/
     fs.close();
-    std::cout << "File edited successfully.\n";
+    std::cout << "任务修改成功\n";
 }
 
-void File::remind_f() {
+void File::remind_f() {//未接入
     std::cout << "输入提醒时间（若无需提醒则输入0）:\n";
     std::cin >> remind_time;
     if (remind_time != 0)
@@ -112,7 +123,7 @@ void File::remind_f() {
     }
 }
 
-void File::import_f() {
+void File::import_f() {//未接入
     std::string filename;
     std::cout << "Enter the name of the file to import:\n";
     std::cin.ignore();
@@ -130,7 +141,7 @@ void File::import_f() {
     }
 }
 
-void File::export_f() {
+void File::export_f() {//未接入
     std::string filename;
     std::cout << "Enter the name of the file to export:\n";
     std::cin.ignore();
@@ -169,8 +180,32 @@ void File::state_c()
     }
     std::cout << "请修改该任务新状态（已完成1 未完成2）：";
     int st;
+    STD:
     std::cin >> st;
+    if (st != 1 && st != 2)
+    {
+        std::cout << "请输入正确状态：";
+        goto STD;
+    }
     state = st;
+    std::string filename = owner_name + std::to_string(file_id) + ".xhh";
+
+    std::fstream file_s(filename, std::ios::in | std::ios::out);
+    if (file_s.is_open()) {
+        std::string firstLine;
+        std::getline(file_s, firstLine);
+
+        file_s.seekg(0, std::ios::beg);
+
+        std::string newFirstLine = std::to_string(state);
+        file_s << newFirstLine;
+
+        file_s.close();
+    }
+    else {
+        std::cout << "无法打开文件！" << std::endl;
+    }
+
 }
 
 std::string File::state_c(int n)
@@ -195,16 +230,18 @@ std::string File::state_c(int n)
 
 File::~File()
 {
-    del();
+    //del();
 }
 
 void File::del() {
-    fs.close();
-    std::string filename = owner_name + std::to_string(file_id) + ".xhh";
-    if (std::remove(filename.c_str()) == 0) {
-        std::cout << "File deleted successfully.\n";
-    }
-    else {
-        std::cerr << "Failed to delete file: " << filename << '\n';
-    }
+    //fs.close();
+    //std::string filename = owner_name + std::to_string(file_id) + ".xhh";
+    //if (std::remove(filename.c_str()) == 0) {
+    //    std::cout << "File deleted successfully.\n";
+    //}
+    //else {
+    //    //std::cerr << "Failed to delete file: " << filename << '\n';
+    //}
+    del_state = 0;
+    std::cout << "删除任务成功\n";
 }
